@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff4db">
+  <title>tinytoast.dev</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { min-height:100vh; margin:0; display:grid; place-items:center; overflow:hidden; background:radial-gradient(circle at 18% 15%,#fff9e9 0 13%,transparent 13.3%),radial-gradient(circle at 88% 82%,#fce1bb 0 15%,transparent 15.3%),#fff1d7; color:#5d351d; font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif; }
+    main { text-align:center; padding:2rem; }
+    .toast { width:min(54vw,300px); aspect-ratio:.88; margin:0 auto 1.8rem; position:relative; border:13px solid #9b5126; border-radius:40% 40% 25% 25% / 26% 26% 17% 17%; background:linear-gradient(125deg,#ffeab0 10%,#f1ae54 60%,#d87830); box-shadow:inset 18px 13px 0 #ffc86e,inset -15px -11px 0 #c96929,0 20px 0 #e6ba83; transform:rotate(-5deg); animation:bob 3.8s ease-in-out infinite; }
+    .toast::before,.toast::after { content:""; position:absolute; background:#5d351d; border-radius:50%; width:10%; aspect-ratio:1; top:51%; }
+    .toast::before { left:30%; } .toast::after { right:30%; }
+    .smile { position:absolute; width:31%; height:18%; border:7px solid #5d351d; border-top:0; border-radius:0 0 50% 50%; left:34.5%; top:60%; }
+    .sparkle { position:fixed; font-size:clamp(1.3rem,3vw,2.5rem); animation:twinkle 2.4s ease-in-out infinite alternate; }
+    .one { left:11%; top:19%; } .two { right:12%; top:23%; animation-delay:.7s; } .three { right:22%; bottom:18%; animation-delay:1.2s; }
+    h1 { font-size:clamp(2.5rem,7vw,5rem); letter-spacing:-.06em; margin:0; } p { font-size:clamp(1.05rem,2vw,1.35rem); margin:.7rem 0 0; opacity:.8; }
+    @keyframes bob { 50% { transform:rotate(4deg) translateY(-13px); } } @keyframes twinkle { to { transform:scale(1.35) rotate(18deg); opacity:.35; } }
+  </style>
+</head>
+<body>
+  <span class="sparkle one">✦</span><span class="sparkle two">✧</span><span class="sparkle three">✦</span>
+  <main><div class="toast" role="img" aria-label="A smiling piece of toast"><div class="smile"></div></div><h1>tiny toast</h1><p>Warm little things are on the way.</p></main>
+</body>
+</html>
