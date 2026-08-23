@@ -1,6 +1,6 @@
 # OpenPGP identity for `tinytoast.dev`
 
-The OpenPGP identity for `me@tinytoast.dev` is a modern Ed25519 primary key
+The OpenPGP identity for `pgp@tinytoast.dev` is a modern Ed25519 primary key
 with a Curve25519 encryption subkey.
 
 ```
@@ -8,12 +8,14 @@ with a Curve25519 encryption subkey.
 ```
 
 The key expires on 2029-08-22 unless it is extended or replaced first.
+The previously published `me@tinytoast.dev` user ID has been revoked on this
+same key; use `pgp@tinytoast.dev` going forward.
 
 ## Where the public key is published
 
 - Identity page: `https://tinytoast.dev/identity/`
-- ASCII-armored key: `https://tinytoast.dev/pgp/me-tinytoast-dev.asc`
-- Direct WKD: `https://tinytoast.dev/.well-known/openpgpkey/hu/s8y7oh5xrdpu9psba3i5ntk64ohouhga`
+- ASCII-armored key: `https://tinytoast.dev/pgp/pgp-tinytoast-dev.asc`
+- Direct WKD: `https://tinytoast.dev/.well-known/openpgpkey/hu/eb5d7bz4mnfcwrx9uxz14t6ezm8kesjf`
 - Advanced WKD files are included at `.well-known/openpgpkey/tinytoast.dev/`.
   They become live after the DNS CNAME below is added.
 
@@ -47,8 +49,8 @@ repository or uploaded to a keyserver.
 ## Verify as someone else
 
 ```sh
-curl -fsSLO https://tinytoast.dev/pgp/me-tinytoast-dev.asc
-gpg --import me-tinytoast-dev.asc
+curl -fsSLO https://tinytoast.dev/pgp/pgp-tinytoast-dev.asc
+gpg --import pgp-tinytoast-dev.asc
 gpg --fingerprint ED02396C918F8262
 # Confirm: 6A00 EAB5 2C5F 492C 8A98 1926 ED02 396C 918F 8262
 gpg --verify FILE.asc FILE
@@ -57,7 +59,7 @@ gpg --verify FILE.asc FILE
 Clients supporting Web Key Directory can usually discover it with:
 
 ```sh
-gpg --auto-key-locate clear,wkd --locate-keys me@tinytoast.dev
+gpg --auto-key-locate clear,wkd --locate-keys pgp@tinytoast.dev
 ```
 
 ## Secure backups and revocation
@@ -104,7 +106,7 @@ For broad WKD support, add this DNS record (DNS-only, not proxied):
 | CNAME | `openpgpkey` | `tinytoast.dev.` | Auto / 3600 |
 
 This enables:
-`https://openpgpkey.tinytoast.dev/.well-known/openpgpkey/tinytoast.dev/hu/s8y7oh5xrdpu9psba3i5ntk64ohouhga`.
+`https://openpgpkey.tinytoast.dev/.well-known/openpgpkey/tinytoast.dev/hu/eb5d7bz4mnfcwrx9uxz14t6ezm8kesjf`.
 
 The direct WKD location works on the main host without a DNS change. The CNAME
 must serve HTTPS successfully for `openpgpkey.tinytoast.dev`; add that custom

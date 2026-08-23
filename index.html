@@ -10,8 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
-    body { min-height:100vh; margin:0; display:grid; place-items:center; overflow:hidden; background:radial-gradient(circle at 18% 15%,#fff9e9 0 13%,transparent 13.3%),radial-gradient(circle at 88% 82%,#fce1bb 0 15%,transparent 15.3%),#fff1d7; color:#5d351d; font-family:"Fredoka",ui-rounded,"SF Pro Rounded",system-ui,sans-serif; }
-    main { text-align:center; padding:2rem; }
+    body { min-height:100svh; margin:0; display:grid; place-items:center; overflow-x:hidden; overflow-y:auto; background:radial-gradient(circle at 17% 15%,#fff9e9 0 11%,transparent 11.3%),radial-gradient(circle at 84% 82%,#fce1bb 0 12%,transparent 12.3%),#fff1d7; color:#5d351d; font-family:"Fredoka",ui-rounded,"SF Pro Rounded",system-ui,sans-serif; }
+    main { text-align:center; padding:2rem 2rem 4.75rem; }
     .toast { width:min(54vw,300px); aspect-ratio:.88; margin:0 auto 1.15rem; position:relative; border:13px solid #9b5126; border-radius:40% 40% 25% 25% / 26% 26% 17% 17%; background:linear-gradient(125deg,#ffeab0 10%,#f1ae54 60%,#d87830); box-shadow:inset 18px 13px 0 #ffc86e,inset -15px -11px 0 #c96929,0 20px 0 #e6ba83; transform:rotate(-5deg); animation:bob 3.8s ease-in-out infinite; }
     .toast::before,.toast::after { content:""; position:absolute; background:#5d351d; border-radius:50%; width:10%; aspect-ratio:1; top:51%; }
     .toast::before { left:30%; } .toast::after { right:30%; }
@@ -19,12 +19,17 @@
     .sparkle { position:fixed; font-size:clamp(1.3rem,3vw,2.5rem); animation:twinkle 2.4s ease-in-out infinite alternate; }
     .one { left:11%; top:19%; } .two { right:12%; top:23%; animation-delay:.7s; } .three { right:22%; bottom:18%; animation-delay:1.2s; }
     h1 { font-size:clamp(2.5rem,7vw,5rem); font-weight:600; letter-spacing:-.045em; line-height:.95; margin:0; }
+    .site-footer { position:fixed; right:0; bottom:max(1rem,env(safe-area-inset-bottom)); left:0; text-align:center; font-size:.86rem; }
+    .site-footer a { display:inline-block; padding:.35rem .7rem; border:2px solid #e6ba83; border-radius:999px; background:#fff9e9d9; color:#9b5126; font-weight:600; text-decoration:none; }
+    .site-footer a:hover, .site-footer a:focus-visible { border-color:#9b5126; }
+    @media (max-width:480px) { .sparkle { font-size:1.35rem; } .one { left:7%; top:13%; } .two { right:8%; top:16%; } .three { right:11%; bottom:19%; } }
     @keyframes bob { 50% { transform:rotate(4deg) translateY(-13px); } }
     @keyframes twinkle { to { transform:scale(1.35) rotate(18deg); opacity:.35; } }
   </style>
 </head>
 <body>
   <span class="sparkle one">✦</span><span class="sparkle two">✧</span><span class="sparkle three">✦</span>
-  <main><div class="toast" role="img" aria-label="A smiling piece of toast"><div class="smile"></div></div><h1>tiny toast</h1><p><a href="/identity/">identity</a></p></main>
+  <main><div class="toast" role="img" aria-label="A smiling piece of toast"><div class="smile"></div></div><h1>tiny toast</h1></main>
+  <footer class="site-footer"><a href="/identity/">OpenPGP identity</a></footer>
 </body>
 </html>

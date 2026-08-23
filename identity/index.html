@@ -28,19 +28,18 @@
   <main>
     <p class="eyebrow">tinytoast.dev identity</p>
     <h1>OpenPGP key</h1>
-    <p class="lede">This key signs material from <a href="mailto:me@tinytoast.dev">me@tinytoast.dev</a>. Compare the complete fingerprint through a channel you trust before relying on it.</p>
+    <p class="lede">This key signs material from <a href="mailto:pgp@tinytoast.dev">pgp@tinytoast.dev</a>. Compare the complete fingerprint through a channel you trust before relying on it.</p>
     <section>
       <h2>Fingerprint</h2>
       <code>6A00 EAB5 2C5F 492C 8A98 1926 ED02 396C 918F 8262</code>
-      <p><a class="button" href="/pgp/me-tinytoast-dev.asc" download>Download ASCII-armored public key</a></p>
+      <p><a class="button" href="/pgp/pgp-tinytoast-dev.asc" download>Download ASCII-armored public key</a></p>
     </section>
     <section>
       <h2>Verify a signature</h2>
-      <code>gpg --import me-tinytoast-dev.asc<br>gpg --fingerprint ED02396C918F8262<br>gpg --verify FILE.asc FILE</code>
+      <code>gpg --import pgp-tinytoast-dev.asc<br>gpg --fingerprint ED02396C918F8262<br>gpg --verify FILE.asc FILE</code>
       <p class="fine">The fingerprint printed by GnuPG must exactly match the one above. Web Key Directory is also available for compatible OpenPGP clients.</p>
     </section>
     <p class="fine"><a href="/">tinytoast.dev</a> · <a href="/IDENTITY.md">technical notes and backup instructions</a></p>
   </main>
 </body>
 </html>
-
