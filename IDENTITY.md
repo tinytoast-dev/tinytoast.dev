@@ -78,6 +78,28 @@ Keep that drive physically separate. The exported private key remains
 passphrase-protected. Store that passphrase in a secure password manager,
 separately from the backup drive, before relying on the exported key.
 
+## Use the key on a replacement or additional computer
+
+Keep one offline encrypted-drive backup containing both files above. Your
+password-manager entry plus the private-key export are required to recover the
+identity; either one alone is insufficient. Import the private-key export only
+on computers you personally control and keep up to date:
+
+```sh
+brew install gnupg pinentry-mac
+gpg --import private-key-backup.asc
+gpg --list-secret-keys 6A00EAB52C5F492C8A981926ED02396C918F8262
+```
+
+The last command should show the same fingerprint. GnuPG will ask for the
+passphrase when you first decrypt or sign. Remove any temporary copy of
+`private-key-backup.asc` from the new computer after importing it; keep the
+master backup only on the encrypted offline drive.
+
+**Do not import the revocation certificate during normal recovery.** It is an
+emergency-only file: importing it tells OpenPGP clients that this key has been
+compromised and should no longer be trusted.
+
 To revoke after compromise, remove the safety colons from a *copy* of the
 generated certificate, import it, then republish the replacement public key at
 the same HTTP and WKD locations:
