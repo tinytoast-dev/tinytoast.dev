@@ -24,25 +24,20 @@ page through a channel you trust.
 
 ## Sign locally
 
-GnuPG and this key are installed in the local user keyring. Its generated
-passphrase is held in macOS Keychain, so use file descriptor 3 to give GnuPG
-the passphrase without displaying it. To make a detached, ASCII-armored
-signature for a file:
+GnuPG and this key are installed in the local user keyring. To make a
+detached, ASCII-armored signature for a file:
 
 ```sh
-gpg --batch --pinentry-mode loopback --passphrase-fd 3 --armor --detach-sign \
-  --local-user 6A00EAB52C5F492C8A981926ED02396C918F8262 FILE \
-  3< <(security find-generic-password -a "$USER" -s 'OpenPGP identity key — tinytoast.dev' -w)
+gpg --armor --detach-sign --local-user 6A00EAB52C5F492C8A981926ED02396C918F8262 FILE
 ```
 
 This produces `FILE.asc`. To clear-sign short text instead:
 
 ```sh
-printf '%s\n' 'message to sign' | gpg --batch --pinentry-mode loopback --passphrase-fd 3 \
-  --armor --clearsign --local-user 6A00EAB52C5F492C8A981926ED02396C918F8262 \
-  3< <(security find-generic-password -a "$USER" -s 'OpenPGP identity key — tinytoast.dev' -w)
+printf '%s\n' 'message to sign' | gpg --armor --clearsign --local-user 6A00EAB52C5F492C8A981926ED02396C918F8262
 ```
 
+GnuPG opens a native macOS passphrase prompt when it needs to unlock the key.
 The private key remains in `~/.gnupg` and must never be copied into this
 repository or uploaded to a keyserver.
 
@@ -80,10 +75,8 @@ chmod 600 private-key-backup.asc revocation-certificate.rev
 ```
 
 Keep that drive physically separate. The exported private key remains
-passphrase-protected; its passphrase is in the local macOS Keychain under
-`OpenPGP identity key — tinytoast.dev`. Ensure that Keychain item is included
-in a protected device backup, or record the passphrase in a separate secure
-password manager before relying on the exported key.
+passphrase-protected. Store that passphrase in a secure password manager,
+separately from the backup drive, before relying on the exported key.
 
 To revoke after compromise, remove the safety colons from a *copy* of the
 generated certificate, import it, then republish the replacement public key at
