@@ -1,0 +1,6 @@
+# Never stage OpenPGP private material or a local recovery bundle.
+identity-backup/
+private-key*.asc
+secret-key*.asc
+revocation*.asc
+*.secret.pgp
