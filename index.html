@@ -3,33 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff4db">
+  <meta name="theme-color" content="#fffdf7">
   <title>tinytoast.dev</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    body { min-height:100svh; margin:0; display:grid; place-items:center; overflow-x:hidden; overflow-y:auto; background:radial-gradient(circle at 17% 15%,#fff9e9 0 11%,transparent 11.3%),radial-gradient(circle at 84% 82%,#fce1bb 0 12%,transparent 12.3%),#fff1d7; color:#5d351d; font-family:"Fredoka",ui-rounded,"SF Pro Rounded",system-ui,sans-serif; }
-    main { text-align:center; padding:2rem 2rem 4.75rem; }
-    .toast { width:min(54vw,300px); aspect-ratio:.88; margin:0 auto 1.15rem; position:relative; border:13px solid #9b5126; border-radius:40% 40% 25% 25% / 26% 26% 17% 17%; background:linear-gradient(125deg,#ffeab0 10%,#f1ae54 60%,#d87830); box-shadow:inset 18px 13px 0 #ffc86e,inset -15px -11px 0 #c96929,0 20px 0 #e6ba83; transform:rotate(-5deg); animation:bob 3.8s ease-in-out infinite; }
-    .toast::before,.toast::after { content:""; position:absolute; background:#5d351d; border-radius:50%; width:10%; aspect-ratio:1; top:51%; }
+    :root { --ink:#211d19; --paper:#fffdf7; --cream:#f7f0e2; --tan:#e4d5b2; --coral:#f45b2a; --sun:#ffd84d; --sky:#a8dcfb; --lilac:#cdbaff; --leaf:#a9d783; }
+    * { box-sizing:border-box; }
+    body { min-height:100svh; margin:0; display:grid; place-items:center; overflow-x:hidden; overflow-y:auto; color:var(--ink); font-family:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold",system-ui,sans-serif; background:radial-gradient(circle at 16% 7%,rgba(255,216,77,.4) 0 9.5rem,transparent 9.65rem),radial-gradient(circle at 88% 88%,rgba(168,220,251,.42) 0 11rem,transparent 11.2rem),var(--paper); }
+    body::before { content:""; position:fixed; inset:0; z-index:-1; opacity:.25; pointer-events:none; background-image:radial-gradient(rgba(33,29,25,.22) .85px,transparent .85px); background-size:14px 14px; mask-image:linear-gradient(to bottom,black,transparent 72%); }
+    main { position:relative; width:min(37rem,calc(100% - 2.5rem)); text-align:center; padding:2rem 0 6.75rem; }
+    .toast { width:min(55vw,288px); aspect-ratio:.88; margin:0 auto 1.55rem; position:relative; border:5px solid var(--ink); border-radius:42% 42% 24% 24% / 28% 28% 16% 16%; background:linear-gradient(135deg,#ffe8a3 7%,#f7bd54 61%,#e88732); box-shadow:inset 15px 12px 0 #ffda7d,inset -12px -10px 0 #d96c27,8px 9px 0 var(--ink); transform:rotate(-5deg); animation:bob 3.8s ease-in-out infinite; }
+    .toast::before,.toast::after { content:""; position:absolute; background:var(--ink); border-radius:50%; width:10%; aspect-ratio:1; top:51%; }
     .toast::before { left:30%; } .toast::after { right:30%; }
-    .smile { position:absolute; width:31%; height:18%; border:7px solid #5d351d; border-top:0; border-radius:0 0 50% 50%; left:34.5%; top:60%; }
-    .sparkle { position:fixed; font-size:clamp(1.3rem,3vw,2.5rem); animation:twinkle 2.4s ease-in-out infinite alternate; }
-    .one { left:11%; top:19%; } .two { right:12%; top:23%; animation-delay:.7s; } .three { right:22%; bottom:18%; animation-delay:1.2s; }
-    h1 { font-size:clamp(2.5rem,7vw,5rem); font-weight:600; letter-spacing:-.045em; line-height:.95; margin:0; }
-    .site-footer { position:fixed; right:0; bottom:max(1rem,env(safe-area-inset-bottom)); left:0; text-align:center; font-size:.86rem; }
-    .site-footer a { display:inline-block; padding:.35rem .7rem; border:2px solid #e6ba83; border-radius:999px; background:#fff9e9d9; color:#9b5126; font-weight:600; text-decoration:none; }
-    .site-footer a:hover, .site-footer a:focus-visible { border-color:#9b5126; }
-    @media (max-width:480px) { .sparkle { font-size:1.35rem; } .one { left:7%; top:13%; } .two { right:8%; top:16%; } .three { right:11%; bottom:19%; } }
-    @keyframes bob { 50% { transform:rotate(4deg) translateY(-13px); } }
-    @keyframes twinkle { to { transform:scale(1.35) rotate(18deg); opacity:.35; } }
+    .smile { position:absolute; width:31%; height:18%; border:6px solid var(--ink); border-top:0; border-radius:0 0 50% 50%; left:34.5%; top:60%; }
+    .toast-tag { display:inline-flex; align-items:center; gap:.45rem; margin:0; padding:.38rem .78rem; border:2px solid var(--ink); border-radius:999px; background:var(--sun); box-shadow:3px 3px 0 var(--ink); font-size:.77rem; font-weight:700; letter-spacing:.045em; text-transform:uppercase; transform:rotate(-2deg); }
+    .toast-tag::before { content:"✦"; font-size:.9rem; }
+    .sparkle { position:fixed; display:grid; width:clamp(2.65rem,6vw,4.3rem); aspect-ratio:1; place-items:center; border:3px solid var(--ink); border-radius:1rem; background:var(--sky); box-shadow:4px 4px 0 var(--ink); font-size:clamp(1.1rem,2.3vw,1.65rem); animation:twinkle 2.8s ease-in-out infinite alternate; }
+    .one { left:max(5%,calc(50% - 29rem)); top:18%; background:var(--sky); transform:rotate(-10deg); } .two { right:max(6%,calc(50% - 31rem)); top:24%; background:var(--lilac); animation-delay:.7s; transform:rotate(9deg); } .three { right:max(12%,calc(50% - 25rem)); bottom:16%; width:clamp(2.3rem,4.8vw,3.4rem); background:var(--leaf); animation-delay:1.2s; transform:rotate(-7deg); }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .site-footer { position:fixed; right:0; bottom:max(1rem,env(safe-area-inset-bottom)); left:0; text-align:center; font-size:.84rem; }
+    .site-footer a { display:inline-block; padding:.48rem .85rem; border:2px solid var(--ink); border-radius:.75rem; background:var(--paper); box-shadow:3px 3px 0 var(--ink); color:var(--ink); font-weight:700; text-decoration:none; transition:transform 140ms ease,box-shadow 140ms ease,background 140ms ease; }
+    .site-footer a:hover { background:var(--sun); transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+    a:focus-visible { outline:3px solid #176591; outline-offset:4px; }
+    @media (max-width:480px) { main { padding-top:2.3rem; } .sparkle { border-width:2px; border-radius:.72rem; box-shadow:3px 3px 0 var(--ink); } .one { left:6%; top:13%; } .two { right:7%; top:15%; } .three { right:10%; bottom:17%; } }
+    @media (prefers-reduced-motion:reduce) { .toast,.sparkle { animation:none; } }
+    @keyframes bob { 50% { transform:rotate(3deg) translateY(-12px); } }
+    @keyframes twinkle { to { margin-top:-7px; opacity:.7; } }
   </style>
 </head>
 <body>
   <span class="sparkle one">✦</span><span class="sparkle two">✧</span><span class="sparkle three">✦</span>
-  <main><div class="toast" role="img" aria-label="A smiling piece of toast"><div class="smile"></div></div><h1>tiny toast</h1></main>
+  <main><div class="toast" role="img" aria-label="A smiling piece of toast"><div class="smile"></div></div><p class="toast-tag">tiny toast</p><h1 class="sr-only">tiny toast</h1></main>
   <footer class="site-footer"><a href="/identity/">OpenPGP identity</a></footer>
 </body>
 </html>
