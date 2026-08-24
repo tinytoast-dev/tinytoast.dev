@@ -3,33 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fffdf7">
+  <meta name="theme-color" content="#d9d4c9">
   <title>tinytoast.dev</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root { --ink:#211d19; --paper:#fffdf7; --cream:#f7f0e2; --tan:#e4d5b2; --coral:#f45b2a; --sun:#ffd84d; --sky:#a8dcfb; --lilac:#cdbaff; --leaf:#a9d783; }
+    :root { --ink:#21201e; --paper:#f6f3eb; --counter:#d9d4c9; --accent:#e94b3c; }
     * { box-sizing:border-box; }
-    body { min-height:100svh; margin:0; display:grid; place-items:center; overflow-x:hidden; overflow-y:auto; color:var(--ink); font-family:"Fredoka",ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold",system-ui,sans-serif; background:radial-gradient(circle at 16% 7%,rgba(255,216,77,.4) 0 9.5rem,transparent 9.65rem),radial-gradient(circle at 88% 88%,rgba(168,220,251,.42) 0 11rem,transparent 11.2rem),var(--paper); }
-    body::before { content:""; position:fixed; inset:0; z-index:-1; opacity:.25; pointer-events:none; background-image:radial-gradient(rgba(33,29,25,.22) .85px,transparent .85px); background-size:14px 14px; mask-image:linear-gradient(to bottom,black,transparent 72%); }
-    main { position:relative; width:min(37rem,calc(100% - 2.5rem)); text-align:center; padding:2rem 0; }
-    .toast { display:block; width:min(62vw,18rem); height:auto; margin:0 auto 1.55rem; image-rendering:pixelated; }
-    .site-menu { display:flex; flex-wrap:wrap; justify-content:center; gap:.7rem; margin:0; padding:0; list-style:none; }
-    .site-menu a { display:inline-flex; align-items:center; gap:.45rem; padding:.48rem .85rem; border:2px solid var(--ink); border-radius:.75rem; background:var(--paper); box-shadow:3px 3px 0 var(--ink); color:var(--ink); font-size:.84rem; font-weight:700; text-decoration:none; transition:transform 140ms ease,box-shadow 140ms ease,background 140ms ease; }
-    .site-menu a:hover,.site-menu a[aria-current="page"] { background:var(--sun); transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
-    .site-menu a[aria-current="page"]::before { content:"✦"; font-size:.9rem; }
-    .sparkle { position:fixed; display:grid; width:clamp(2.65rem,6vw,4.3rem); aspect-ratio:1; place-items:center; border:3px solid var(--ink); border-radius:1rem; background:var(--sky); box-shadow:4px 4px 0 var(--ink); font-size:clamp(1.1rem,2.3vw,1.65rem); animation:twinkle 2.8s ease-in-out infinite alternate; }
-    .one { left:max(5%,calc(50% - 29rem)); top:18%; background:var(--sky); transform:rotate(-10deg); } .two { right:max(6%,calc(50% - 31rem)); top:24%; background:var(--lilac); animation-delay:.7s; transform:rotate(9deg); } .three { right:max(12%,calc(50% - 25rem)); bottom:16%; width:clamp(2.3rem,4.8vw,3.4rem); background:var(--leaf); animation-delay:1.2s; transform:rotate(-7deg); }
-    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-    a:focus-visible { outline:3px solid #176591; outline-offset:4px; }
-    @media (max-width:480px) { main { padding-top:2.3rem; } .sparkle { border-width:2px; border-radius:.72rem; box-shadow:3px 3px 0 var(--ink); } .one { left:6%; top:13%; } .two { right:7%; top:15%; } .three { right:10%; bottom:17%; } }
-    @media (prefers-reduced-motion:reduce) { .sparkle { animation:none; } }
-    @keyframes twinkle { to { margin-top:-7px; opacity:.7; } }
+    body { min-height:100vh; margin:0; display:grid; place-items:center; padding:35px 20px; color:var(--ink); background:var(--counter); font:14px/1.5 "DM Mono",ui-monospace,monospace; }
+    .receipt { position:relative; width:min(430px,100%); padding:32px 30px 40px; background:linear-gradient(90deg,rgba(0,0,0,.025),transparent 8%,transparent 92%,rgba(0,0,0,.025)),var(--paper); filter:drop-shadow(8px 9px 0 rgba(33,32,30,.25)); }
+    .receipt::after { position:absolute; right:0; bottom:-13px; left:0; height:14px; content:""; background:linear-gradient(135deg,transparent 9px,var(--paper) 0) 0 0/18px 14px repeat-x,linear-gradient(225deg,transparent 9px,var(--paper) 0) 0 0/18px 14px repeat-x; }
+    .center { text-align:center; }
+    .logo { display:block; width:75px; margin:8px auto 14px; image-rendering:pixelated; filter:grayscale(1) contrast(1.3); }
+    h1 { margin:0 0 2px; font-size:18px; letter-spacing:.12em; }
+    .sub { margin:0 0 20px; font-size:11px; letter-spacing:.1em; }
+    .rule { margin:18px 0; border:0; border-top:2px dashed var(--ink); }
+    .row { display:flex; justify-content:space-between; gap:16px; margin:8px 0; }
+    .row span:last-child { text-align:right; }
+    small { font-size:11px; }
+    .total { margin-top:14px; font-size:16px; font-weight:700; }
+    .barcode { width:78%; height:46px; margin:26px auto 15px; background:repeating-linear-gradient(90deg,#222 0 2px,transparent 2px 4px,#222 4px 5px,transparent 5px 8px,#222 8px 12px,transparent 12px 14px); }
+    .fine { margin:0; font-size:10px; line-height:1.45; text-align:center; }
+    nav { display:flex; justify-content:center; gap:16px; margin-top:19px; }
+    a { color:inherit; font-size:11px; text-underline-offset:4px; }
+    a:hover { color:var(--accent); }
+    a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
   </style>
 </head>
 <body>
-  <span class="sparkle one">✦</span><span class="sparkle two">✧</span><span class="sparkle three">✦</span>
-  <main><img class="toast" src="/assets/tinytoast-logo.svg" alt="ASCII-art slice of toast"><h1 class="sr-only">tiny toast</h1><nav aria-label="Site menu"><ul class="site-menu"><li><a href="/" aria-current="page">Tiny toast</a></li><li><a href="/identity/">OpenPGP identity</a></li></ul></nav></main>
+  <main class="receipt">
+    <div class="center">
+      <img class="logo" src="/assets/tinytoast-logo.svg" alt="A tiny piece of toast">
+      <h1>TINYTOAST.DEV</h1>
+      <p class="sub">A SMALL WEB PRESENCE &nbsp; · &nbsp; NO. 000001</p>
+    </div>
+    <hr class="rule">
+    <div class="row"><span>public identity<br><small>a key for verifying messages and files</small></span><span>01</span></div>
+    <div class="row"><span>github<br><small>things made by rohan</small></span><span>01</span></div>
+    <hr class="rule">
+    <div class="row total"><span>AMOUNT DUE</span><span>NOTHING</span></div>
+    <div class="barcode" aria-hidden="true"></div>
+    <p class="fine">TINYTOAST.DEV<br>KEEP THIS RECEIPT FOR REFERENCE.</p>
+    <nav aria-label="Links">
+      <a href="https://github.com/sonrohan">github ↗</a>
+      <a href="/identity/">openpgp identity ↗</a>
+    </nav>
+  </main>
 </body>
 </html>
