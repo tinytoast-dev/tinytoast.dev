@@ -19,13 +19,14 @@
     h1 { margin:0 0 2px; font-size:18px; letter-spacing:.12em; }
     .sub { margin:0 0 20px; font-size:11px; letter-spacing:.1em; }
     .rule { margin:18px 0; border:0; border-top:2px dashed var(--ink); }
-    .row { display:flex; justify-content:space-between; gap:16px; margin:8px 0; }
-    .row span:last-child { text-align:right; }
-    small { font-size:11px; }
+    .line-item { display:flex; align-items:center; justify-content:space-between; gap:16px; margin:0 -8px; padding:10px 8px; color:inherit; text-decoration:none; transition:background 120ms ease,color 120ms ease; }
+    .line-item:hover { color:var(--accent); background:#fffdf8; }
+    .item-name { font-weight:700; text-decoration:underline dashed 1px; text-underline-offset:4px; }
+    small { display:block; font-size:11px; }
+    .action { flex:none; font-size:12px; text-decoration:underline; text-underline-offset:4px; }
     .total { margin-top:14px; font-size:16px; font-weight:700; }
     .barcode { width:78%; height:46px; margin:26px auto 15px; background:repeating-linear-gradient(90deg,#222 0 2px,transparent 2px 4px,#222 4px 5px,transparent 5px 8px,#222 8px 12px,transparent 12px 14px); }
     .fine { margin:0; font-size:10px; line-height:1.45; text-align:center; }
-    nav { display:flex; justify-content:center; gap:16px; margin-top:19px; }
     a { color:inherit; font-size:11px; text-underline-offset:4px; }
     a:hover { color:var(--accent); }
     a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
@@ -39,16 +40,12 @@
       <p class="sub">A SMALL WEB PRESENCE &nbsp; · &nbsp; NO. 000001</p>
     </div>
     <hr class="rule">
-    <div class="row"><span>public identity<br><small>a key for verifying messages and files</small></span><span>01</span></div>
-    <div class="row"><span>github<br><small>things made by rohan</small></span><span>01</span></div>
+    <a class="line-item" href="/identity/"><span><span class="item-name">public identity</span><small>a key for verifying messages and files</small></span><span class="action">view ↗</span></a>
+    <a class="line-item" href="https://github.com/sonrohan"><span><span class="item-name">github</span><small>things made by rohan</small></span><span class="action">visit ↗</span></a>
     <hr class="rule">
     <div class="row total"><span>AMOUNT DUE</span><span>NOTHING</span></div>
     <div class="barcode" aria-hidden="true"></div>
     <p class="fine">TINYTOAST.DEV<br>KEEP THIS RECEIPT FOR REFERENCE.</p>
-    <nav aria-label="Links">
-      <a href="https://github.com/sonrohan">github ↗</a>
-      <a href="/identity/">openpgp identity ↗</a>
-    </nav>
   </main>
 </body>
 </html>
